@@ -432,3 +432,129 @@ function dd($data, $die = true) {
     echo '</pre>';
     if ($die) die();
 }
+
+/**
+ * Get professional email template
+ */
+function getEmailTemplate($subject, $content) {
+    $siteName = SITE_NAME;
+    $siteUrl = SITE_URL;
+    $currentYear = date('Y');
+
+    return <<<HTML
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$subject}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+        .email-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .email-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .email-header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .email-body {
+            padding: 40px 30px;
+            color: #333333;
+        }
+        .email-body h2 {
+            color: #667eea;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        .email-body p {
+            margin: 15px 0;
+            color: #555555;
+        }
+        .email-body a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .email-footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .email-footer p {
+            margin: 5px 0;
+            color: #777777;
+            font-size: 14px;
+        }
+        .email-footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #667eea;
+            font-size: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-body {
+                padding: 20px 15px;
+            }
+            .email-header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="email-header">
+            <h1>{$siteName}</h1>
+        </div>
+
+        <div class="email-body">
+            {$content}
+        </div>
+
+        <div class="email-footer">
+            <p><strong>{$siteName}</strong></p>
+            <p>
+                <a href="{$siteUrl}">{$siteUrl}</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 12px; color: #999999;">
+                Bu e-posta {$siteName} tarafından gönderilmiştir.<br>
+                &copy; {$currentYear} {$siteName}. Tüm hakları saklıdır.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+HTML;
+}
