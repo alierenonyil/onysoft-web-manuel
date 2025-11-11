@@ -1,0 +1,37 @@
+# IDE and Editor files
+.vscode/
+.idea/
+*.sublime-*
+.DS_Store
+
+# Logs
+error.log
+*.log
+
+# Environment files
+.env
+.env.local
+
+# Uploads (comment out if you want to track uploads)
+uploads/*
+!uploads/.gitkeep
+
+# Cache and temporary files
+cache/
+temp/
+*.tmp
+
+# Vendor (if using Composer)
+vendor/
+
+# Node modules (if using npm)
+node_modules/
+
+# System files
+Thumbs.db
+.DS_Store
+
+# Security - don't commit these
+install.php.backup
+backup/
+*.sql.gz
