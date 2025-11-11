@@ -16,7 +16,7 @@ date_default_timezone_set('Europe/Istanbul');
 // Session Configuration
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_secure', 0); // HTTPS kullanıyorsanız 1 yapın
+ini_set('session.cookie_secure', 1); // HTTPS aktif
 ini_set('session.cookie_samesite', 'Strict');
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -31,7 +31,7 @@ define('DB_PASS', 'guvenli_sifre');
 define('DB_CHARSET', 'utf8mb4');
 
 // Site Configuration
-define('SITE_URL', 'http://staravcisi.com'); // Sitenizin URL'i
+define('SITE_URL', 'https://staravcisi.com'); // Sitenizin URL'i
 define('SITE_NAME', 'StarAvcısı E-Ticaret');
 define('SITE_EMAIL', 'info@staravcisi.com');
 

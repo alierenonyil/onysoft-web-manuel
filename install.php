@@ -223,7 +223,7 @@ HTACCESS;
                             <form method="POST">
                                 <div class="mb-3">
                                     <label class="form-label">Site URL</label>
-                                    <input type="url" name="site_url" class="form-control" value="http://staravcisi.com" required>
+                                    <input type="url" name="site_url" class="form-control" value="https://staravcisi.com" required>
                                 </div>
 
                                 <div class="mb-3">
