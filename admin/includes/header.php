@@ -75,9 +75,23 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
             </li>
 
             <li class="nav-item">
-                <a class="nav-link <?php echo strpos($currentPage, 'setting') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/index.php'); ?>">
-                    <i class="fas fa-cog"></i> Ayarlar
+                <a class="nav-link <?php echo strpos($currentPage, 'setting') !== false || strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'active' : ''; ?>" href="#settingsMenu" data-bs-toggle="collapse">
+                    <i class="fas fa-cog"></i> Ayarlar <i class="fas fa-chevron-down float-end mt-1" style="font-size: 0.8rem;"></i>
                 </a>
+                <div class="collapse <?php echo strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'show' : ''; ?>" id="settingsMenu">
+                    <ul class="nav flex-column ms-3">
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' && strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/index.php'); ?>">
+                                <i class="fas fa-sliders-h"></i> Genel
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'mail.php' ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/mail.php'); ?>">
+                                <i class="fas fa-envelope-open-text"></i> Mail
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
 
