@@ -1,44 +1,129 @@
 <?php
-define('FRONTEND_PAGE', true);
-require_once 'includes/config.php';
+/**
+ * Temporary Installation Redirect
+ * This file will redirect to installation page if database is not set up
+ */
 
-$pageTitle = getSetting('site_name') . ' - ' . getSetting('site_description');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Get active sliders
-$sliders = dbQuery("SELECT * FROM sliders WHERE status = 1 ORDER BY sort_order ASC LIMIT 5");
+// Check if database is installed
+try {
+    $host = 'staravcisi.com';
+    $dbname = 'wawahousesql';
+    $user = 'wawahousekullanici';
+    $pass = 'guvenli_sifre';
 
-// Get featured products
-$featuredProducts = dbQuery("
-    SELECT p.*, c.name as category_name
-    FROM products p
-    LEFT JOIN categories c ON p.category_id = c.id
-    WHERE p.status = 1 AND p.is_featured = 1
-    ORDER BY p.sort_order ASC
-    LIMIT 8
-");
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]);
 
-// Get new products
-$newProducts = dbQuery("
-    SELECT p.*, c.name as category_name
-    FROM products p
-    LEFT JOIN categories c ON p.category_id = c.id
-    WHERE p.status = 1 AND p.is_new = 1
-    ORDER BY p.created_at DESC
-    LIMIT 8
-");
+    // Check if tables exist
+    $result = $pdo->query("SHOW TABLES LIKE 'site_settings'")->fetch();
 
-// Get categories with products
-$categories = dbQuery("
-    SELECT c.*, COUNT(p.id) as product_count
-    FROM categories c
-    LEFT JOIN products p ON c.id = p.category_id AND p.status = 1
-    WHERE c.parent_id = 0 AND c.status = 1
-    GROUP BY c.id
-    ORDER BY c.sort_order ASC
-    LIMIT 6
-");
+    if (!$result) {
+        // Database not installed, redirect to installation
+        header('Location: /install.php');
+        exit;
+    }
 
-require_once 'includes/header_frontend.php';
+    // Database exists, load the real index page
+    define('FRONTEND_PAGE', true);
+    require_once 'includes/config.php';
+
+    $pageTitle = getSetting('site_name', 'StarAvcısı E-Ticaret') . ' - ' . getSetting('site_description', 'Modern E-Ticaret');
+
+    // Get active sliders
+    $sliders = dbQuery("SELECT * FROM sliders WHERE status = 1 ORDER BY sort_order ASC LIMIT 5");
+
+    // Get featured products
+    $featuredProducts = dbQuery("
+        SELECT p.*, c.name as category_name
+        FROM products p
+        LEFT JOIN categories c ON p.category_id = c.id
+        WHERE p.status = 1 AND p.is_featured = 1
+        ORDER BY p.sort_order ASC
+        LIMIT 8
+    ");
+
+    // Get new products
+    $newProducts = dbQuery("
+        SELECT p.*, c.name as category_name
+        FROM products p
+        LEFT JOIN categories c ON p.category_id = c.id
+        WHERE p.status = 1 AND p.is_new = 1
+        ORDER BY p.created_at DESC
+        LIMIT 8
+    ");
+
+    // Get categories with products
+    $categories = dbQuery("
+        SELECT c.*, COUNT(p.id) as product_count
+        FROM categories c
+        LEFT JOIN products p ON c.id = p.category_id AND p.status = 1
+        WHERE c.parent_id = 0 AND c.status = 1
+        GROUP BY c.id
+        ORDER BY c.sort_order ASC
+        LIMIT 6
+    ");
+
+    require_once 'includes/header_frontend.php';
+
+} catch (Exception $e) {
+    // Database connection failed or tables don't exist
+    ?>
+    <!DOCTYPE html>
+    <html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kurulum Gerekli - StarAvcısı E-Ticaret</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; }
+            .install-card { max-width: 600px; margin: 0 auto; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="install-card">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center p-5">
+                        <div class="mb-4">
+                            <i class="fas fa-database" style="font-size: 5rem; color: #667eea;"></i>
+                        </div>
+                        <h1 class="mb-3">🚀 Kurulum Gerekli</h1>
+                        <p class="lead mb-4">Veritabanı henüz kurulmamış. Lütfen kurulum işlemini tamamlayın.</p>
+
+                        <div class="alert alert-danger text-start">
+                            <strong>Hata:</strong><br>
+                            <small><?php echo htmlspecialchars($e->getMessage()); ?></small>
+                        </div>
+
+                        <a href="/install.php" class="btn btn-primary btn-lg px-5">
+                            <i class="fas fa-play"></i> Kuruluma Başla
+                        </a>
+
+                        <hr class="my-4">
+
+                        <div class="text-muted small text-start">
+                            <strong>Kurulum Adımları:</strong>
+                            <ol class="mt-2">
+                                <li>"Kuruluma Başla" butonuna tıklayın</li>
+                                <li>Otomatik kurulum tamamlanacak</li>
+                                <li>Admin panele giriş yapın</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </body>
+    </html>
+    <?php
+    exit;
+}
 ?>
 
 <!-- Slider -->
