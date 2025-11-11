@@ -75,6 +75,18 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
             </li>
 
             <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'reports') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/reports/index.php'); ?>">
+                    <i class="fas fa-chart-line"></i> Raporlar
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'tools') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/tools/backup.php'); ?>">
+                    <i class="fas fa-tools"></i> Araçlar
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link <?php echo strpos($currentPage, 'setting') !== false || strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'active' : ''; ?>" href="#settingsMenu" data-bs-toggle="collapse">
                     <i class="fas fa-cog"></i> Ayarlar <i class="fas fa-chevron-down float-end mt-1" style="font-size: 0.8rem;"></i>
                 </a>
