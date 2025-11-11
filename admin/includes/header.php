@@ -69,6 +69,12 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
             </li>
 
             <li class="nav-item">
+                <a class="nav-link <?php echo strpos($currentPage, 'email') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/emails/index.php'); ?>">
+                    <i class="fas fa-envelope"></i> Toplu Mail
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link <?php echo strpos($currentPage, 'setting') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/index.php'); ?>">
                     <i class="fas fa-cog"></i> Ayarlar
                 </a>
