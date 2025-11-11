@@ -315,21 +315,25 @@ function generateOrderNumber() {
 }
 
 /**
- * Send email (basit mail fonksiyonu)
+ * Send email using Mailer class (SMTP or PHP mail)
  */
-function sendEmail($to, $subject, $message, $headers = []) {
-    $defaultHeaders = [
-        'From: ' . MAIL_FROM_NAME . ' <' . MAIL_FROM . '>',
-        'Reply-To: ' . MAIL_FROM,
-        'X-Mailer: PHP/' . phpversion(),
-        'MIME-Version: 1.0',
-        'Content-Type: text/html; charset=UTF-8'
-    ];
+function sendEmail($to, $subject, $message, $fromEmail = null, $fromName = null) {
+    try {
+        $mailer = new Mailer();
 
-    $headers = array_merge($defaultHeaders, $headers);
-    $headerString = implode("\r\n", $headers);
+        $mailer->addAddress($to)
+               ->setSubject($subject)
+               ->setBody($message);
 
-    return mail($to, $subject, $message, $headerString);
+        if ($fromEmail) {
+            $mailer->setFrom($fromEmail, $fromName ?: $fromEmail);
+        }
+
+        return $mailer->send();
+    } catch (Exception $e) {
+        error_log("Email send error: " . $e->getMessage());
+        return false;
+    }
 }
 
 /**
