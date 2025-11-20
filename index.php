@@ -18,11 +18,22 @@ try {
     // Check if tables exist
     $result = dbQueryOne("SELECT COUNT(*) as cnt FROM site_settings", []);
     if (!$result || $result['cnt'] == 0) {
+        // Kurulum yapılmamış, install sayfasına yönlendir
         header('Location: /install.php');
         exit;
     }
 
 } catch (Exception $e) {
+    // Hata durumunda log kaydı
+    error_log("Index.php Error: " . $e->getMessage());
+    error_log("Stack trace: " . $e->getTraceAsString());
+
+    // Geliştirme modunda hatayı göster
+    if (defined('DEBUG_MODE') && DEBUG_MODE) {
+        die("Hata: " . $e->getMessage() . "<br>Dosya: " . $e->getFile() . "<br>Satır: " . $e->getLine());
+    }
+
+    // Production'da install sayfasına yönlendir
     header('Location: /install.php');
     exit;
 }
