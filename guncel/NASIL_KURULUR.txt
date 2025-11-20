@@ -1,0 +1,190 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                                                                       ║
+║   STARAVCISI E-TİCARET SİTESİ - KURULUM KILAVUZU                    ║
+║   Son Güncelleme: 20 Kasım 2025                                      ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+📦 BU PAKET İÇERİĞİ:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Tam OpenCart Seviyesi E-Ticaret Sistemi
+✅ Profesyonel Admin Panel
+✅ Otomatik Kurulum Sihirbazı
+✅ Modern Responsive Tasarım
+✅ Gelişmiş Slider Yönetimi
+✅ Kupon ve İndirim Sistemi
+✅ Yorum ve Rating Sistemi
+✅ Banner ve Menü Yönetimi
+✅ Tema Özelleştirme Paneli
+✅ Genel Site Ayarları
+
+
+🚀 KURULUM ADIMLARI:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ADIM 1: DOSYALARI YÜKLE
+───────────────────────────────────────────────────────────────────────
+1. Bu klasördeki TÜM dosyaları sunucunuzun public_html klasörüne yükleyin
+2. FTP ile yükleme yapıyorsanız: FileZilla veya benzeri FTP programı kullanın
+3. cPanel File Manager kullanıyorsanız: ZIP olarak yükleyip extract edin
+
+
+ADIM 2: KLASÖR İZİNLERİ
+───────────────────────────────────────────────────────────────────────
+Aşağıdaki klasörlere yazma izni verin (chmod 755 veya 777):
+
+chmod 755 uploads/
+chmod 755 uploads/products/
+chmod 755 uploads/categories/
+chmod 755 uploads/sliders/
+chmod 755 uploads/banners/
+chmod 755 uploads/theme/
+chmod 755 cache/
+
+
+ADIM 3: DATABASE AYARLARI
+───────────────────────────────────────────────────────────────────────
+includes/config.php dosyasını açın ve database bilgilerinizi girin:
+
+define('DB_HOST', 'localhost');           // Genelde localhost
+define('DB_NAME', 'veritabani_adi');      // Database adınız
+define('DB_USER', 'veritabani_kullanici');// Database kullanıcı adı
+define('DB_PASS', 'sifreniz');            // Database şifresi
+
+
+ADIM 4: KURULUMU BAŞLAT
+───────────────────────────────────────────────────────────────────────
+Tarayıcınızda şu adresi açın:
+
+https://yourdomain.com/install.php
+
+Kurulum sihirbazı sizi adım adım yönlendirecek:
+→ Adım 1: Sistem gereksinimleri kontrolü
+→ Adım 2: Database bağlantısı (OTOMATİK veritabanı oluşturur)
+→ Adım 3: Tablo kurulumu (OTOMATİK tüm tabloları oluşturur)
+→ Adım 4: Admin hesabı oluşturma
+→ Adım 5: Kurulum tamamlandı!
+
+
+ADIM 5: GÜVENLİK
+───────────────────────────────────────────────────────────────────────
+Kurulum tamamlandıktan sonra ŞU DOSYALARI SİLİN:
+
+❌ install.php      → Kurulum dosyası (çok önemli!)
+❌ test.php         → Test dosyası
+❌ info.php         → Test dosyası
+❌ NASIL_KURULUR.txt → Bu dosya
+
+
+🎯 KURULUM SONRASI:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Ana Sayfa: https://yourdomain.com/
+✅ Admin Panel: https://yourdomain.com/admin/
+✅ Admin Giriş: Kurulum sırasında oluşturduğunuz kullanıcı adı ve şifre
+
+
+⚙️ ADMIN PANEL ÖZELLİKLERİ:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 Dashboard              → İstatistikler ve özet bilgiler
+📦 Ürünler                → Ürün ekleme, düzenleme, silme
+📁 Kategoriler            → Kategori yönetimi (hiyerarşik)
+🛒 Siparişler             → Sipariş takibi ve yönetimi
+👥 Müşteriler             → Müşteri listesi ve detayları
+
+🎫 Kuponlar               → İndirim kuponları oluşturma
+⭐ Yorumlar               → Müşteri yorumlarını onaylama
+📧 Toplu Mail             → Email kampanyaları
+
+🎨 Slider                 → Ana sayfa slider yönetimi
+🖼️  Bannerlar             → Banner gösterim yönetimi
+📋 Menüler                → Menü oluşturma ve düzenleme
+📄 Sayfalar               → Statik sayfa yönetimi
+🎯 Düzenler               → OpenCart benzeri layout sistemi
+
+🚚 Kargo                  → Kargo yöntemleri ve ücretleri
+⚙️  Seçenekler            → Ürün varyasyonları (renk, beden vs.)
+🎨 Tema                   → Renk, font, logo özelleştirme
+⚙️  Genel Ayarlar         → Site bilgileri, sosyal medya, özellikler
+
+
+🎨 TEMA ÖZELLEŞTİRME:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Admin Panel → Sistem → Tema
+→ Ana renk, ikincil renk, vurgu rengi seçin
+→ Header ve footer renklerini ayarlayın
+→ Font ailesini seçin
+→ Logo ve favicon yükleyin
+→ Canlı önizleme ile görün!
+
+Admin Panel → Ayarlar → Genel Ayarlar
+→ Site adı, açıklama, iletişim bilgileri
+→ Ana sayfa bölümlerini aç/kapat
+→ Ücretsiz kargo limiti
+→ Sosyal medya linkleri
+→ Özellik anahtarları (wishlist, compare, reviews)
+
+
+🔧 TEKNİK BİLGİLER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Gereksinimler:
+✅ PHP 7.4 veya üzeri (PHP 8.0+ önerilir)
+✅ MySQL 5.7 veya üzeri / MariaDB 10.2+
+✅ Apache veya Nginx web sunucusu
+✅ mod_rewrite aktif (Apache için)
+
+PHP Eklentileri:
+✅ pdo_mysql
+✅ json
+✅ mbstring
+✅ gd (resim işleme)
+✅ curl
+
+
+❓ SORUN GİDERME:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ SORUN: "500 Internal Server Error"
+✅ ÇÖZÜM:
+   1. includes/config.php'deki DB_HOST'u kontrol et (localhost, 127.0.0.1)
+   2. Klasör izinlerini kontrol et (uploads, cache → 755)
+   3. error.log dosyasını kontrol et
+   4. PHP version kontrolü (php -v)
+
+❌ SORUN: "Database connection error"
+✅ ÇÖZÜM:
+   1. cPanel'den database oluştur
+   2. Database kullanıcısı oluştur ve yetki ver
+   3. config.php'de bilgileri güncelle
+   4. DB_HOST'u dene: localhost, 127.0.0.1, mysql, domain.com
+
+❌ SORUN: "Session hatası"
+✅ ÇÖZÜM:
+   1. PHP session modülü aktif mi kontrol et
+   2. tmp klasörü yazılabilir mi kontrol et
+   3. php.ini'de session.save_path kontrolü
+
+❌ SORUN: "Resimler yüklenmiyor"
+✅ ÇÖZÜM:
+   1. uploads klasörü ve alt klasörlerine 755 izni ver
+   2. PHP upload_max_filesize ve post_max_size ayarlarını kontrol et
+   3. .htaccess'teki PHP limitlerini kontrol et
+
+
+📞 DESTEK:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GitHub: https://github.com/yourusername/onysoft-web-manuel
+Branch: claude/ecommerce-admin-setup-01EXFPkonKsQnGxpyLxRd5ML
+
+
+🎉 İYİ SATILAR! 🎉
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Bu sistem OpenCart seviyesinde profesyonel bir e-ticaret platformudur.
+Tüm özellikler admin panelden yönetilebilir, kod değişikliği gerektirmez!
+

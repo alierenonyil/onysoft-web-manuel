@@ -1,0 +1,145 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                     GÜNCEL DOSYA LİSTESİ                             ║
+║                     Tarih: 20 Kasım 2025                             ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+📁 KLASÖR YAPISI:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 admin/                    → Admin Panel Dosyaları
+  ├── 📂 banners/            → Banner yönetimi
+  ├── 📂 categories/         → Kategori yönetimi
+  ├── 📂 coupons/            → Kupon yönetimi
+  ├── 📂 customers/          → Müşteri yönetimi
+  ├── 📂 emails/             → Email kampanyaları
+  ├── 📂 includes/           → Admin panel include dosyaları
+  ├── 📂 layouts/            → Layout yönetimi
+  ├── 📂 menus/              → Menü yönetimi
+  ├── 📂 options/            → Ürün seçenekleri
+  ├── 📂 orders/             → Sipariş yönetimi
+  ├── 📂 pages/              → Sayfa yönetimi
+  ├── 📂 products/           → Ürün yönetimi
+  ├── 📂 reports/            → Raporlar
+  ├── 📂 reviews/            → Yorum yönetimi
+  ├── 📂 settings/           → Site ayarları
+  │   ├── general.php        → ✨ YENİ - Genel site ayarları
+  │   ├── index.php          → Site ayarları
+  │   └── mail.php           → Mail ayarları
+  ├── 📂 shipping/           → Kargo yönetimi
+  ├── 📂 sliders/            → Slider yönetimi
+  ├── 📂 tools/              → Araçlar
+  ├── 📂 appearance/         → Tema özelleştirme
+  ├── index.php              → Dashboard
+  └── login.php              → Admin girişi
+
+📂 assets/                   → Statik dosyalar (CSS, JS, images)
+  ├── 📂 css/                → Stil dosyaları
+  ├── 📂 js/                 → JavaScript dosyaları
+  └── 📂 images/             → Görsel dosyalar
+
+📂 includes/                 → Core sistem dosyaları
+  ├── config.php             → ✅ DÜZELTME - HTTPS + session fix
+  ├── database.php           → Database bağlantı sınıfı
+  ├── functions.php          → ✅ DÜZELTME - displayFlash fix
+  └── security.php           → ✅ DÜZELTME - isLoggedIn, getClientIP, logActivity
+
+📂 uploads/                  → Yüklenecek dosyalar
+  ├── 📂 products/           → Ürün görselleri
+  ├── 📂 categories/         → Kategori görselleri
+  ├── 📂 sliders/            → Slider görselleri
+  ├── 📂 banners/            → Banner görselleri
+  └── 📂 theme/              → Tema dosyaları (logo, favicon)
+
+📂 cache/                    → Önbellek dosyaları
+
+
+📄 ANA DOSYALAR:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+.htaccess                    → ✅ DÜZELTME - Güvenlik ayarları
+index.php                    → ✅ DÜZELTME - Error handling + image fix
+install.php                  → ✅ DÜZELTME - Session + config fix
+product.php                  → Ürün detay sayfası
+category.php                 → Kategori listesi sayfası
+test.php                     → ✅ YENİ - Sistem test aracı
+info.php                     → ✅ YENİ - Basit PHP testi
+NASIL_KURULUR.txt            → ✅ YENİ - Kurulum kılavuzu
+DOSYA_LISTESI.txt            → Bu dosya
+
+
+🗄️ DATABASE DOSYALARI:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+database.sql                 → Temel veritabanı yapısı
+database_complete.sql        → Tam veritabanı şeması
+database_opencart_upgrade.sql → OpenCart benzeri ek özellikler
+
+
+🔄 SON YAPILAN DEĞİŞİKLİKLER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ HTTP 500 hatası düzeltildi
+✅ HTTPS session cookie sorunu çözüldü
+✅ Config.php koşullu require eklendi
+✅ install.php double session hatası düzeltildi
+✅ .htaccess güvenlik iyileştirmeleri
+✅ isLoggedIn() fonksiyonu eklendi
+✅ getClientIP() fonksiyonu eklendi
+✅ logActivity() fonksiyonu eklendi
+✅ displayFlash() iyileştirildi
+✅ Product image alan uyumsuzluğu çözüldü
+✅ Admin panel - Genel Ayarlar modülü eklendi
+✅ Test dosyaları eklendi (test.php, info.php)
+
+
+📊 İSTATİSTİKLER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Toplam Dosya Sayısı: 200+ dosya
+Admin Modülleri: 20+ modül
+Database Tabloları: 40+ tablo
+Kod Satırı: ~15,000 satır
+Özellikler: OpenCart seviyesi
+
+
+🎯 ÖNE ÇIKAN ÖZELLİKLER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ Otomatik kurulum sistemi
+✨ Çoklu slider desteği (animasyonlar, zamanlama)
+✨ Banner yönetimi (pozisyonlara göre)
+✨ Kupon ve indirim sistemi
+✨ Yorum ve rating sistemi
+✨ OpenCart benzeri layout yönetimi
+✨ Tema özelleştirme (renk, font, logo)
+✨ Genel site ayarları (ana sayfa bölümleri, özellikler)
+✨ Hiyerarşik menü sistemi
+✨ Kargo yönetimi
+✨ Ürün varyasyonları (seçenekler)
+✨ Email kampanyaları
+✨ Activity logging
+✨ CSRF koruması
+✨ Modern responsive tasarım
+
+
+🔐 GÜVENLİK ÖZELLİKLERİ:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ CSRF Token koruması
+✅ XSS koruması (sanitize, htmlspecialchars)
+✅ SQL Injection koruması (PDO prepared statements)
+✅ Password hashing (bcrypt)
+✅ Session güvenliği (httponly, secure, samesite)
+✅ IP tracking
+✅ Activity logging
+✅ Rate limiting
+✅ .htaccess güvenlik kuralları
+✅ includes/ klasörü web erişimine kapalı
+
+
+📌 NOT:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Bu dosyalar PRODUCTION'a hazır durumda!
+Kurulum sonrası test.php, info.php ve install.php dosyalarını silmeyi unutmayın!
+
