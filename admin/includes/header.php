@@ -150,13 +150,18 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                 <div class="collapse <?php echo strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'show' : ''; ?>" id="settingsMenu">
                     <ul class="nav flex-column ms-3">
                         <li class="nav-item">
+                            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'general.php' ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/general.php'); ?>">
+                                <i class="fas fa-cogs"></i> Genel Ayarlar
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' && strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/index.php'); ?>">
-                                <i class="fas fa-sliders-h"></i> Genel
+                                <i class="fas fa-sliders-h"></i> Site Ayarları
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'mail.php' ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/mail.php'); ?>">
-                                <i class="fas fa-envelope-open-text"></i> Mail
+                                <i class="fas fa-envelope-open-text"></i> Mail Ayarları
                             </a>
                         </li>
                     </ul>
