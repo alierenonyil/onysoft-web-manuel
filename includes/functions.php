@@ -148,7 +148,17 @@ function hasFlash($key) {
 /**
  * Display flash message
  */
-function displayFlash($key) {
+function displayFlash($key = null) {
+    // If no key specified, display all flash messages
+    if ($key === null) {
+        if (isset($_SESSION['flash']) && is_array($_SESSION['flash'])) {
+            foreach ($_SESSION['flash'] as $flashKey => $flashData) {
+                displayFlash($flashKey);
+            }
+        }
+        return;
+    }
+
     $flash = getFlash($key);
     if ($flash) {
         $alertClass = [

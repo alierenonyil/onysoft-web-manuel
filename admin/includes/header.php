@@ -56,9 +56,51 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                 </a>
             </li>
 
+            <!-- Satış & Pazarlama -->
+            <li class="nav-section">Satış & Pazarlama</li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'coupons') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/coupons/index.php'); ?>">
+                    <i class="fas fa-ticket-alt"></i> Kuponlar
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'reviews') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/reviews/index.php'); ?>">
+                    <i class="fas fa-star"></i> Yorumlar
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($currentPage, 'email') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/emails/index.php'); ?>">
+                    <i class="fas fa-envelope"></i> Toplu Mail
+                </a>
+            </li>
+
+            <!-- İçerik Yönetimi -->
+            <li class="nav-section">İçerik Yönetimi</li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'layouts') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/layouts/index.php'); ?>">
+                    <i class="fas fa-th-large"></i> Düzenler
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link <?php echo strpos($currentPage, 'slider') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/sliders/index.php'); ?>">
                     <i class="fas fa-images"></i> Slider
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'banners') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/banners/index.php'); ?>">
+                    <i class="fas fa-image"></i> Bannerlar
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'menus') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/menus/index.php'); ?>">
+                    <i class="fas fa-bars"></i> Menüler
                 </a>
             </li>
 
@@ -68,9 +110,18 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                 </a>
             </li>
 
+            <!-- Sistem -->
+            <li class="nav-section">Sistem</li>
+
             <li class="nav-item">
-                <a class="nav-link <?php echo strpos($currentPage, 'email') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/emails/index.php'); ?>">
-                    <i class="fas fa-envelope"></i> Toplu Mail
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'shipping') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/shipping/index.php'); ?>">
+                    <i class="fas fa-truck"></i> Kargo
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'options') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/options/index.php'); ?>">
+                    <i class="fas fa-sliders-h"></i> Seçenekler
                 </a>
             </li>
 
@@ -87,19 +138,30 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
             </li>
 
             <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['PHP_SELF'], 'appearance') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/appearance/index.php'); ?>">
+                    <i class="fas fa-palette"></i> Tema
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link <?php echo strpos($currentPage, 'setting') !== false || strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'active' : ''; ?>" href="#settingsMenu" data-bs-toggle="collapse">
                     <i class="fas fa-cog"></i> Ayarlar <i class="fas fa-chevron-down float-end mt-1" style="font-size: 0.8rem;"></i>
                 </a>
                 <div class="collapse <?php echo strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'show' : ''; ?>" id="settingsMenu">
                     <ul class="nav flex-column ms-3">
                         <li class="nav-item">
+                            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'general.php' ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/general.php'); ?>">
+                                <i class="fas fa-cogs"></i> Genel Ayarlar
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' && strpos($_SERVER['PHP_SELF'], 'settings') !== false ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/index.php'); ?>">
-                                <i class="fas fa-sliders-h"></i> Genel
+                                <i class="fas fa-sliders-h"></i> Site Ayarları
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'mail.php' ? 'active' : ''; ?>" href="<?php echo siteUrl('admin/settings/mail.php'); ?>">
-                                <i class="fas fa-envelope-open-text"></i> Mail
+                                <i class="fas fa-envelope-open-text"></i> Mail Ayarları
                             </a>
                         </li>
                     </ul>

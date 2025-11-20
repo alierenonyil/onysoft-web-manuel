@@ -61,6 +61,15 @@ body {
     margin-right: 10px;
 }
 
+.sidebar .nav-section {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    padding: 1rem 1.5rem 0.5rem;
+    margin-top: 0.5rem;
+}
+
 .sidebar-footer {
     padding: 1rem;
     position: absolute;
