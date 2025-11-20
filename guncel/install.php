@@ -57,27 +57,120 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->exec("CREATE DATABASE IF NOT EXISTS `$db_name` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 
+            // Create complete config.php with all necessary settings
             $config_content = '<?php
-define("DB_HOST", "' . $db_host . '");
-define("DB_NAME", "' . $db_name . '");
-define("DB_USER", "' . $db_user . '");
-define("DB_PASS", "' . addslashes($db_pass) . '");
-define("DB_CHARSET", "utf8mb4");
-define("SITE_URL", "' . (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '");
-define("SITE_NAME", "E-Ticaret");
-define("SITE_EMAIL", "info@' . $_SERVER['HTTP_HOST'] . '");
-define("SECRET_KEY", "' . bin2hex(random_bytes(32)) . '");
-define("SESSION_LIFETIME", 3600);
-define("ROOT_PATH", __DIR__ . "/..");
-define("UPLOAD_PATH", ROOT_PATH . "/uploads");
-define("CACHE_PATH", ROOT_PATH . "/cache");
-define("CURRENCY_CODE", "TRY");
-define("CURRENCY_SYMBOL", "₺");
-define("TAX_RATE", 20);
-define("ITEMS_PER_PAGE", 12);
-define("DEBUG_MODE", false);
-date_default_timezone_set("Europe/Istanbul");
-if (DEBUG_MODE) { error_reporting(E_ALL); ini_set("display_errors", 1); } else { error_reporting(0); ini_set("display_errors", 0); }
+/**
+ * Configuration File
+ * E-Commerce System
+ */
+
+// Error Reporting (production\'da kapatılmalı)
+error_reporting(E_ALL);
+ini_set(\'display_errors\', 1);
+ini_set(\'log_errors\', 1);
+ini_set(\'error_log\', __DIR__ . \'/../error.log\');
+
+// Timezone
+date_default_timezone_set(\'Europe/Istanbul\');
+
+// Session Configuration
+ini_set(\'session.cookie_httponly\', 1);
+ini_set(\'session.use_only_cookies\', 1);
+
+// HTTPS kontrolü - sadece HTTPS ise secure cookie kullan
+$isHttps = (!empty($_SERVER[\'HTTPS\']) && $_SERVER[\'HTTPS\'] !== \'off\')
+    || (!empty($_SERVER[\'SERVER_PORT\']) && $_SERVER[\'SERVER_PORT\'] == 443)
+    || (!empty($_SERVER[\'HTTP_X_FORWARDED_PROTO\']) && $_SERVER[\'HTTP_X_FORWARDED_PROTO\'] === \'https\');
+
+if ($isHttps) {
+    ini_set(\'session.cookie_secure\', 1);
+}
+
+// SameSite ayarı (PHP 7.3+)
+if (PHP_VERSION_ID >= 70300) {
+    ini_set(\'session.cookie_samesite\', \'Lax\');
+}
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Database Configuration
+define(\'DB_HOST\', \'' . $db_host . '\');
+define(\'DB_NAME\', \'' . $db_name . '\');
+define(\'DB_USER\', \'' . $db_user . '\');
+define(\'DB_PASS\', \'' . addslashes($db_pass) . '\');
+define(\'DB_CHARSET\', \'utf8mb4\');
+
+// Site Configuration
+define(\'SITE_URL\', \'' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '\');
+define(\'SITE_NAME\', \'E-Ticaret Sitem\');
+define(\'SITE_EMAIL\', \'info@' . $_SERVER['HTTP_HOST'] . '\');
+
+// Paths
+define(\'ROOT_PATH\', dirname(__DIR__));
+define(\'INCLUDES_PATH\', ROOT_PATH . \'/includes\');
+define(\'UPLOAD_PATH\', ROOT_PATH . \'/uploads\');
+define(\'ADMIN_PATH\', ROOT_PATH . \'/admin\');
+
+// Upload Settings
+define(\'MAX_FILE_SIZE\', 5242880); // 5MB in bytes
+define(\'ALLOWED_IMAGE_TYPES\', [\'image/jpeg\', \'image/png\', \'image/gif\', \'image/webp\']);
+define(\'ALLOWED_IMAGE_EXTENSIONS\', [\'jpg\', \'jpeg\', \'png\', \'gif\', \'webp\']);
+
+// Pagination
+define(\'ITEMS_PER_PAGE\', 12);
+define(\'ADMIN_ITEMS_PER_PAGE\', 20);
+
+// Security
+define(\'CSRF_TOKEN_NAME\', \'csrf_token\');
+define(\'PASSWORD_HASH_ALGO\', PASSWORD_BCRYPT);
+define(\'PASSWORD_HASH_COST\', 10);
+
+// Currency
+define(\'CURRENCY\', \'TRY\');
+define(\'CURRENCY_SYMBOL\', \'₺\');
+
+// Tax Rate (%)
+define(\'TAX_RATE\', 20);
+
+// Email Configuration (SMTP - opsiyonel)
+define(\'MAIL_FROM\', \'noreply@' . $_SERVER['HTTP_HOST'] . '\');
+define(\'MAIL_FROM_NAME\', SITE_NAME);
+
+// Payment Gateway Settings (daha sonra admin panelden yönetilebilir)
+define(\'IYZICO_API_KEY\', \'\');
+define(\'IYZICO_SECRET_KEY\', \'\');
+define(\'IYZICO_BASE_URL\', \'https://sandbox-api.iyzipay.com\');
+
+define(\'PAYTR_MERCHANT_ID\', \'\');
+define(\'PAYTR_MERCHANT_KEY\', \'\');
+define(\'PAYTR_MERCHANT_SALT\', \'\');
+
+// Admin Configuration
+define(\'ADMIN_SESSION_NAME\', \'admin_logged_in\');
+define(\'ADMIN_SESSION_TIMEOUT\', 3600); // 1 saat
+
+// Customer Configuration
+define(\'CUSTOMER_SESSION_NAME\', \'customer_logged_in\');
+
+// Site Status
+define(\'MAINTENANCE_MODE\', false);
+
+// Autoload Classes (gelecekte kullanılabilir)
+spl_autoload_register(function ($class) {
+    $file = INCLUDES_PATH . \'/classes/\' . $class . \'.php\';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
+
+// Global Functions - Sadece sabitler tanımlıysa yükle
+if (defined(\'DB_HOST\') && defined(\'DB_NAME\')) {
+    require_once INCLUDES_PATH . \'/database.php\';
+    require_once INCLUDES_PATH . \'/functions.php\';
+    require_once INCLUDES_PATH . \'/security.php\';
+}
 ';
             file_put_contents(__DIR__ . '/includes/config.php', $config_content);
             $_SESSION['install'] = ['db_host' => $db_host, 'db_name' => $db_name, 'db_user' => $db_user, 'db_pass' => $db_pass];
