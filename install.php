@@ -81,7 +81,7 @@ if (DEBUG_MODE) { error_reporting(E_ALL); ini_set("display_errors", 1); } else {
 ';
             file_put_contents(__DIR__ . '/includes/config.php', $config_content);
             $_SESSION['install'] = ['db_host' => $db_host, 'db_name' => $db_name, 'db_user' => $db_user, 'db_pass' => $db_pass];
-            header('Location: ?step=3');
+            header('Location: install.php?step=3');
             exit;
         } catch (PDOException $e) {
             $error = 'Veritabanı bağlantı hatası: ' . $e->getMessage();
@@ -152,7 +152,7 @@ if (DEBUG_MODE) { error_reporting(E_ALL); ini_set("display_errors", 1); } else {
                 throw new Exception('Çok fazla hata oluştu. İlk hata: ' . $errors[0]);
             }
 
-            header('Location: ?step=4');
+            header('Location: install.php?step=4');
             exit;
         } catch (Exception $e) {
             $error = 'Tablo oluşturma hatası: ' . $e->getMessage();
@@ -184,7 +184,7 @@ if (DEBUG_MODE) { error_reporting(E_ALL); ini_set("display_errors", 1); } else {
                 $stmt = $pdo->prepare("INSERT INTO site_settings (setting_key, setting_value) VALUES ('site_name', ?) ON DUPLICATE KEY UPDATE setting_value = ?");
                 $stmt->execute([$site_name, $site_name]);
 
-                header('Location: ?step=5');
+                header('Location: install.php?step=5');
                 exit;
             } catch (PDOException $e) {
                 $error = 'Admin hesabı oluşturma hatası: ' . $e->getMessage();
