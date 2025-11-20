@@ -79,15 +79,66 @@ if (DEBUG_MODE) { error_reporting(E_ALL); ini_set("display_errors", 1); } else {
             $pdo = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8mb4", DB_USER, DB_PASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            foreach (['database_complete.sql', 'database_opencart_upgrade.sql'] as $sql_file) {
-                if (file_exists(__DIR__ . '/' . $sql_file)) {
-                    $sql = file_get_contents(__DIR__ . '/' . $sql_file);
-                    $pdo->exec($sql);
+            // Create upload directories
+            $upload_dirs = [
+                __DIR__ . '/uploads',
+                __DIR__ . '/uploads/products',
+                __DIR__ . '/uploads/categories',
+                __DIR__ . '/uploads/sliders',
+                __DIR__ . '/uploads/banners',
+                __DIR__ . '/uploads/theme',
+                __DIR__ . '/cache'
+            ];
+
+            foreach ($upload_dirs as $dir) {
+                if (!is_dir($dir)) {
+                    mkdir($dir, 0755, true);
                 }
             }
+
+            $sql_files = ['database_complete.sql', 'database_opencart_upgrade.sql'];
+            $executed = 0;
+            $errors = [];
+
+            foreach ($sql_files as $sql_file) {
+                if (file_exists(__DIR__ . '/' . $sql_file)) {
+                    $sql = file_get_contents(__DIR__ . '/' . $sql_file);
+
+                    // Remove comments
+                    $sql = preg_replace('/--.*$/m', '', $sql);
+                    $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
+
+                    // Split into statements
+                    $statements = array_filter(array_map('trim', explode(';', $sql)));
+
+                    foreach ($statements as $statement) {
+                        if (!empty($statement)) {
+                            try {
+                                $pdo->exec($statement);
+                                $executed++;
+                            } catch (PDOException $e) {
+                                // Ignore "table already exists" errors
+                                if (strpos($e->getMessage(), 'already exists') === false) {
+                                    $errors[] = substr($statement, 0, 100) . '... - ' . $e->getMessage();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            $_SESSION['install_stats'] = [
+                'executed' => $executed,
+                'errors' => count($errors)
+            ];
+
+            if (count($errors) > 10) {
+                throw new Exception('Çok fazla hata oluştu. İlk hata: ' . $errors[0]);
+            }
+
             header('Location: ?step=4');
             exit;
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $error = 'Tablo oluşturma hatası: ' . $e->getMessage();
         }
     }
@@ -228,10 +279,34 @@ if (DEBUG_MODE) { error_reporting(E_ALL); ini_set("display_errors", 1); } else {
                     <h4 class="mb-4">Veritabanı Kurulumu</h4>
                     <div class="text-center py-4">
                         <i class="fas fa-database fa-3x text-primary mb-3"></i>
-                        <p>Veritabanı tabloları oluşturulacak.</p>
-                        <form method="POST">
-                            <button type="submit" class="btn btn-install btn-primary"><i class="fas fa-cog"></i> Tabloları Oluştur</button>
+                        <p>Veritabanı tabloları otomatik olarak oluşturulacak.</p>
+
+                        <div class="alert alert-info text-start mb-4">
+                            <strong>Oluşturulacak Tablolar:</strong>
+                            <ul class="mb-0 mt-2" style="font-size: 0.9rem;">
+                                <li>Ürün ve Kategori Tabloları (products, categories, product_images)</li>
+                                <li>Sipariş Tabloları (orders, order_items)</li>
+                                <li>Müşteri Tabloları (customers, customer_addresses, wishlist)</li>
+                                <li>İçerik Tabloları (layouts, sliders, banners, menus, pages)</li>
+                                <li>Pazarlama Tabloları (coupons, reviews, email_campaigns)</li>
+                                <li>Kargo & Ödeme Tabloları (shipping_methods, payment_methods)</li>
+                                <li>Ayar Tabloları (theme_settings, site_settings)</li>
+                                <li>Ve 20+ ek tablo...</li>
+                            </ul>
+                        </div>
+
+                        <form method="POST" id="dbForm">
+                            <button type="submit" class="btn btn-install btn-primary">
+                                <i class="fas fa-cog fa-spin"></i> Veritabanını Oluştur
+                            </button>
                         </form>
+
+                        <script>
+                        document.getElementById('dbForm').addEventListener('submit', function() {
+                            this.querySelector('button').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Oluşturuluyor...';
+                            this.querySelector('button').disabled = true;
+                        });
+                        </script>
                     </div>
 
                 <?php elseif ($step === 4): ?>
