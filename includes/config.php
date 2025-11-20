@@ -16,15 +16,28 @@ date_default_timezone_set('Europe/Istanbul');
 // Session Configuration
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_secure', 1); // HTTPS aktif
-ini_set('session.cookie_samesite', 'Strict');
+
+// HTTPS kontrolü - sadece HTTPS ise secure cookie kullan
+$isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || (!empty($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
+    || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+
+if ($isHttps) {
+    ini_set('session.cookie_secure', 1);
+}
+
+// SameSite ayarı (PHP 7.3+)
+if (PHP_VERSION_ID >= 70300) {
+    ini_set('session.cookie_samesite', 'Lax');
+}
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 // Database Configuration
-define('DB_HOST', 'staravcisi.com');
+// Not: Eğer database bağlantı hatası alırsanız DB_HOST'u 'localhost' veya '127.0.0.1' yapın
+define('DB_HOST', 'localhost'); // veya 'staravcisi.com' - sunucu ayarınıza göre
 define('DB_NAME', 'wawahousesql');
 define('DB_USER', 'wawahousekullanici');
 define('DB_PASS', 'guvenli_sifre');

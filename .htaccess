@@ -49,17 +49,22 @@ Options -Indexes
     Deny from all
 </FilesMatch>
 
-# Protect config files
-<FilesMatch "(^config\.php|^database\.php|^\.env|^\.htaccess)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
+# Protect includes directory from direct web access
+<IfModule mod_rewrite.c>
+    RewriteRule ^includes/(.*)$ - [F,L]
+</IfModule>
 
-# Protect database.sql file
-<Files "database.sql">
+# Protect .env files
+<Files ".env">
     Order allow,deny
     Deny from all
 </Files>
+
+# Protect SQL files from direct access
+<FilesMatch "\.(sql|sqlite|db)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
 
 # Protect install.php after installation (uncomment after first install)
 # <Files "install.php">
