@@ -1,0 +1,454 @@
+═══════════════════════════════════════════════════════════════
+    E-TİCARET SİSTEMİ - DOSYA LİSTESİ VE AÇIKLAMALARI
+═══════════════════════════════════════════════════════════════
+
+📦 GÜNCEL PAKET İÇERİĞİ (guncel1 klasörü)
+Tarih: 2025-01-20
+Durum: ✅ TÜM HATALAR DÜZELTİLDİ
+
+───────────────────────────────────────────────────────────────
+📁 ANA DOSYALAR
+───────────────────────────────────────────────────────────────
+
+install.php                 ✅ GÜNCELLENDI
+  → Otomatik kurulum sihirbazı (5 adım)
+  → Veritabanı otomatik oluşturma
+  → Tabloları otomatik kurma
+  → Admin hesabı oluşturma
+  → ✅ FIX: Tam config.php oluşturma (step 4-5 404 hatası çözüldü)
+  → ✅ FIX: Admin şifre doğrulama düzeltildi
+
+index.php                   ✅ GÜNCELLENDI
+  → Ana sayfa
+  → Öne çıkan ürünler
+  → Yeni ürünler
+  → Çok satanlar
+  → Slider gösterimi
+  → ✅ FIX: Enhanced error handling
+
+product.php                 ✅ STABIL
+  → Ürün detay sayfası
+  → Çoklu resim galerisi
+  → Stok durumu
+  → Sepete ekleme
+  → Yorumlar
+
+category.php                ✅ STABIL
+  → Kategori ürün listesi
+  → Filtreleme ve sıralama
+  → Sayfalama
+
+cart.php                    ✅ STABIL
+  → Sepet sayfası
+  → Ürün güncelleme/silme
+  → Toplam hesaplama
+
+checkout.php                ✅ STABIL
+  → Ödeme sayfası
+  → Adres seçimi
+  → Kargo/Ödeme yöntemi
+  → Sipariş oluşturma
+
+search.php                  ✅ STABIL
+  → Arama sayfası
+  → Ürün arama sonuçları
+
+account.php                 ✅ STABIL
+  → Kullanıcı hesabı
+  → Sipariş geçmişi
+  → Adres yönetimi
+
+.htaccess                   ✅ GÜNCELLENDI
+  → Apache yapılandırması
+  → URL rewriting
+  → Güvenlik kuralları
+  → ✅ FIX: includes/ koruması düzeltildi
+
+───────────────────────────────────────────────────────────────
+📁 VERİTABANI DOSYALARI
+───────────────────────────────────────────────────────────────
+
+database_complete.sql       ✅ STABIL
+  → Tüm veritabanı tabloları
+  → 35+ tablo şeması
+  → İndeksler ve foreign keyler
+  → Örnek veriler
+
+database_opencart_upgrade.sql  ✅ STABIL
+  → Ek özellikler
+  → OpenCart benzeri tablolar
+  → SEO ve layout tabloları
+
+───────────────────────────────────────────────────────────────
+📁 INCLUDES/ (Sistem Dosyaları)
+───────────────────────────────────────────────────────────────
+
+includes/config.php         ✅ GÜNCELLENDI
+  → Ana yapılandırma dosyası
+  → Veritabanı ayarları
+  → Site ayarları
+  → Güvenlik ayarları
+  → ✅ FIX: Dynamic HTTPS detection
+  → ✅ FIX: Conditional requires
+
+includes/database.php       ✅ STABIL
+  → PDO veritabanı bağlantısı
+  → CRUD fonksiyonları
+  → Hazır sorgular
+
+includes/functions.php      ✅ GÜNCELLENDI
+  → Yardımcı fonksiyonlar
+  → Sanitization
+  → Flash messages
+  → Pagination
+  → ✅ FIX: displayFlash() optional parameter
+  → ✅ FIX: getClientIP() ve logActivity() burada
+
+includes/security.php       ✅ GÜNCELLENDI
+  → CSRF koruması
+  → XSS koruması
+  → Login/Logout fonksiyonları
+  → Password hashing
+  → ✅ FIX: Duplicate functions removed
+
+includes/email.php          ✅ STABIL
+  → E-posta gönderimi
+  → Şablonlar
+  → SMTP desteği
+
+includes/cart_functions.php ✅ STABIL
+  → Sepet işlemleri
+  → Ürün ekleme/çıkarma
+  → Toplam hesaplama
+
+includes/payment.php        ✅ STABIL
+  → Ödeme gateway entegrasyonları
+  → iyzico, PayTR desteği
+
+includes/shipping.php       ✅ STABIL
+  → Kargo hesaplamaları
+  → Ücretsiz kargo limiti
+
+───────────────────────────────────────────────────────────────
+📁 ADMIN/ (Yönetim Paneli)
+───────────────────────────────────────────────────────────────
+
+admin/index.php             ✅ STABIL
+  → Admin dashboard
+  → İstatistikler
+  → Grafikler
+
+admin/login.php             ✅ GÜNCELLENDI
+  → Admin girişi
+  → ✅ FIX: cleanText() kullanımı düzeltildi
+
+admin/header.php            ✅ STABIL
+  → Admin panel başlığı
+  → Navigasyon menüsü
+
+admin/sidebar.php           ✅ STABIL
+  → Yan menü
+  → Kategorize edilmiş linkler
+
+admin/footer.php            ✅ STABIL
+  → Admin panel alt bilgisi
+
+───────────────────────────────────────────────────────────────
+📁 ADMIN/CATALOG/ (Katalog Yönetimi)
+───────────────────────────────────────────────────────────────
+
+admin/catalog/products.php  ✅ STABIL
+  → Ürün listesi
+  → Ürün ekleme/düzenleme
+  → Çoklu resim yükleme
+  → Stok yönetimi
+
+admin/catalog/categories.php ✅ STABIL
+  → Kategori yönetimi
+  → Hiyerarşik yapı
+  → Kategori resimleri
+
+admin/catalog/reviews.php   ✅ STABIL
+  → Yorum yönetimi
+  → Onay/Reddet
+
+───────────────────────────────────────────────────────────────
+📁 ADMIN/SALES/ (Satış Yönetimi)
+───────────────────────────────────────────────────────────────
+
+admin/sales/orders.php      ✅ STABIL
+  → Sipariş listesi
+  → Sipariş detayları
+  → Durum güncelleme
+  → Fatura yazdırma
+
+admin/sales/invoices.php    ✅ STABIL
+  → Fatura yönetimi
+  → PDF oluşturma
+
+───────────────────────────────────────────────────────────────
+📁 ADMIN/CUSTOMERS/ (Müşteri Yönetimi)
+───────────────────────────────────────────────────────────────
+
+admin/customers/customers.php ✅ STABIL
+  → Müşteri listesi
+  → Müşteri detayları
+  → Sipariş geçmişi
+
+admin/customers/addresses.php ✅ STABIL
+  → Adres yönetimi
+
+───────────────────────────────────────────────────────────────
+📁 ADMIN/MARKETING/ (Pazarlama)
+───────────────────────────────────────────────────────────────
+
+admin/marketing/coupons.php ✅ STABIL
+  → İndirim kuponu yönetimi
+  → Kupon kodları
+  → Geçerlilik tarihleri
+  → Minimum tutar
+
+admin/marketing/shipping_methods.php ✅ STABIL
+  → Kargo firmaları
+  → Ücret ayarları
+
+admin/marketing/payment_methods.php ✅ STABIL
+  → Ödeme yöntemleri
+  → API ayarları
+
+admin/marketing/email_campaigns.php ✅ STABIL
+  → Toplu e-posta
+  → Kampanya yönetimi
+
+───────────────────────────────────────────────────────────────
+📁 ADMIN/DESIGN/ (Tasarım)
+───────────────────────────────────────────────────────────────
+
+admin/design/sliders.php    ✅ STABIL
+  → Ana sayfa slider
+  → Slider sıralaması
+  → Aktif/Pasif
+
+admin/design/banners.php    ✅ STABIL
+  → Banner yönetimi
+  → Pozisyon ayarları
+
+admin/design/menus.php      ✅ STABIL
+  → Menü yönetimi
+  → Dinamik menüler
+
+admin/design/pages.php      ✅ STABIL
+  → Statik sayfalar
+  → Hakkımızda, İletişim vb.
+
+admin/design/themes.php     ✅ STABIL
+  → Tema ayarları
+  → Renk şemaları
+  → Logo yükleme
+
+───────────────────────────────────────────────────────────────
+📁 ADMIN/SETTINGS/ (Ayarlar)
+───────────────────────────────────────────────────────────────
+
+admin/settings/general.php  ✅ STABIL
+  → Site genel ayarları
+  → İletişim bilgileri
+  → Sosyal medya
+  → Para birimi, vergi
+  → Bakım modu
+
+admin/settings/users.php    ✅ STABIL
+  → Admin kullanıcılar
+  → Rol yönetimi
+
+admin/settings/logs.php     ✅ STABIL
+  → Activity log
+  → Error log
+
+───────────────────────────────────────────────────────────────
+📁 ADMIN/REPORTS/ (Raporlar)
+───────────────────────────────────────────────────────────────
+
+admin/reports/sales.php     ✅ STABIL
+  → Satış raporları
+  → Tarih bazlı filtreleme
+
+admin/reports/products.php  ✅ STABIL
+  → En çok satanlar
+  → Stok raporları
+
+admin/reports/customers.php ✅ STABIL
+  → Müşteri raporları
+  → En çok alışveriş yapanlar
+
+───────────────────────────────────────────────────────────────
+📁 ASSETS/ (Statik Dosyalar)
+───────────────────────────────────────────────────────────────
+
+assets/css/style.css        ✅ STABIL
+  → Ana stil dosyası
+  → Responsive tasarım
+  → Modern görünüm
+
+assets/css/admin.css        ✅ STABIL
+  → Admin panel stilleri
+  → Dashboard tasarımı
+
+assets/js/main.js           ✅ STABIL
+  → Ana JavaScript
+  → Sepet işlemleri
+  → AJAX fonksiyonları
+
+assets/js/admin.js          ✅ STABIL
+  → Admin panel JS
+  → Form validasyonları
+
+assets/images/              ✅ STABIL
+  → Site logosu
+  → Placeholder resimler
+  → İkonlar
+
+───────────────────────────────────────────────────────────────
+📁 UPLOADS/ (Yüklenen Dosyalar)
+───────────────────────────────────────────────────────────────
+
+uploads/products/           📂 BOŞ
+  → Ürün resimleri buraya yüklenecek
+
+uploads/categories/         📂 BOŞ
+  → Kategori resimleri buraya yüklenecek
+
+uploads/sliders/            📂 BOŞ
+  → Slider resimleri buraya yüklenecek
+
+uploads/banners/            📂 BOŞ
+  → Banner resimleri buraya yüklenecek
+
+uploads/theme/              📂 BOŞ
+  → Logo ve tema resimleri buraya yüklenecek
+
+───────────────────────────────────────────────────────────────
+📁 CACHE/ (Önbellek)
+───────────────────────────────────────────────────────────────
+
+cache/                      📂 BOŞ
+  → Sistem önbellek dosyaları
+
+───────────────────────────────────────────────────────────────
+📝 DOKÜMANTASYON DOSYALARI
+───────────────────────────────────────────────────────────────
+
+NASIL_KURULUR.txt           📘 YENİ
+  → Detaylı Türkçe kurulum kılavuzu
+  → Adım adım talimatlar
+  → Sorun giderme
+
+DOSYA_LISTESI.txt           📘 BU DOSYA
+  → Tüm dosyaların açıklaması
+  → Durum bilgileri
+
+───────────────────────────────────────────────────────────────
+🔧 YAPILAN SON DÜZELTMELER
+───────────────────────────────────────────────────────────────
+
+✅ DÜZELTME 1: install.php - Config Generation
+   Tarih: 2025-01-20
+   Commit: cfa475c
+   Sorun: Step 4-5 404 hatası, admin şifre doğrulamıyor
+   Çözüm: install.php'nin oluşturduğu config.php artık TAMAMEN
+          tam özellikli, tüm requires dahil
+
+✅ DÜZELTME 2: security.php - Function Duplication
+   Tarih: Önceki
+   Commit: c32a637
+   Sorun: getClientIP() ve logActivity() duplicate hatası
+   Çözüm: security.php'den duplicate fonksiyonlar silindi
+
+✅ DÜZELTME 3: install.php - Redirect URLs
+   Tarih: Önceki
+   Commit: fec4a28
+   Sorun: Step 3'te 404 hatası
+   Çözüm: Relative URL yerine absolute URL kullanımı
+
+✅ DÜZELTME 4: functions.php & security.php
+   Tarih: Önceki
+   Commit: 45ab5f5
+   Sorun: Install.php double session_start
+   Çözüm: Conditional session_start, config parsing
+
+✅ DÜZELTME 5: config.php - HTTPS Detection
+   Tarih: Önceki
+   Sorun: HTTPS sitede 500 hatası
+   Çözüm: Dynamic HTTPS detection eklendi
+
+───────────────────────────────────────────────────────────────
+📊 TOPLAM DOSYA İSTATİSTİKLERİ
+───────────────────────────────────────────────────────────────
+
+Ana PHP Dosyaları:          ~15 dosya
+Admin Panel Dosyaları:      ~30 dosya
+Include Dosyaları:          ~10 dosya
+CSS Dosyaları:              ~5 dosya
+JavaScript Dosyaları:       ~5 dosya
+SQL Dosyaları:              2 dosya
+Dokümantasyon:              2 dosya
+
+Toplam Veritabanı Tablosu:  35+ tablo
+Toplam Satır Kod:           ~15,000+ satır
+
+───────────────────────────────────────────────────────────────
+✨ SİSTEM ÖZELLİKLERİ
+───────────────────────────────────────────────────────────────
+
+✓ OpenCart benzeri yapı
+✓ Tam Türkçe arayüz
+✓ Responsive tasarım
+✓ Modern admin paneli
+✓ PDO güvenli veritabanı
+✓ CSRF ve XSS koruması
+✓ Bcrypt şifreleme
+✓ Otomatik kurulum
+✓ Çoklu dil desteği (altyapı)
+✓ Çoklu para birimi (altyapı)
+✓ SEO dostu URL'ler
+✓ Activity logging
+✓ E-posta sistem
+✓ Kupon sistemi
+✓ Yorum sistemi
+✓ Wishlist
+✓ Ürün karşılaştırma
+✓ Stok takibi
+✓ Sipariş yönetimi
+✓ Raporlama
+
+───────────────────────────────────────────────────────────────
+🎯 KURULUM ÖNCESİ KONTROL LİSTESİ
+───────────────────────────────────────────────────────────────
+
+□ PHP 7.4+ kurulu
+□ MySQL 5.7+ kurulu
+□ Apache mod_rewrite aktif
+□ PDO MySQL eklentisi aktif
+□ GD eklentisi aktif
+□ Sunucuda write permission var
+□ Veritabanı kullanıcısı hazır (veya root erişimi)
+□ FTP/SSH erişimi var
+□ Dosya yöneticisi erişimi var
+
+───────────────────────────────────────────────────────────────
+🚀 KURULUMA BAŞLA
+───────────────────────────────────────────────────────────────
+
+1. Tüm dosyaları sunucuya yükle
+2. https://siteadiniz.com/install.php aç
+3. Adımları takip et
+4. Kurulum bitince install.php'yi sil
+5. Admin panele gir ve ayarları yap
+
+═══════════════════════════════════════════════════════════════
+
+📅 Güncellenme: 2025-01-20
+📌 Durum: ÜRETİME HAZIR
+✅ Tüm hatalar düzeltildi
+
+═══════════════════════════════════════════════════════════════

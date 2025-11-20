@@ -1,0 +1,303 @@
+═══════════════════════════════════════════════════════════════
+    OPENCART BENZERİ E-TİCARET SİSTEMİ - KURULUM KILAVUZU
+═══════════════════════════════════════════════════════════════
+
+📦 PAKET İÇERİĞİ
+───────────────────────────────────────────────────────────────
+
+✅ Tüm dosyalar EN SON düzeltmelerle güncellenmiştir
+✅ Admin şifre hatası ✔ DÜZELTİLDİ
+✅ Install.php step 4-5 404 hatası ✔ DÜZELTİLDİ
+✅ Fonksiyon redeclaration hatası ✔ DÜZELTİLDİ
+✅ HTTPS session hatası ✔ DÜZELTİLDİ
+
+───────────────────────────────────────────────────────────────
+🚀 HIZLI KURULUM (3 Adım)
+───────────────────────────────────────────────────────────────
+
+1. TÜM DOSYALARI SUNUCUYA YÜKLE
+   - Bu klasördeki tüm dosya ve klasörleri web sitenizin
+     kök dizinine yükleyin (public_html, httpdocs vb.)
+
+2. TARAYICIDA KURULUMU BAŞLAT
+   - https://siteadiniz.com/install.php adresine gidin
+   - Otomatik kurulum sihirbazını takip edin
+
+3. KURULUM TAMAMLANDI!
+   - Admin Panel: https://siteadiniz.com/admin/
+   - Ana Site: https://siteadiniz.com/
+
+───────────────────────────────────────────────────────────────
+📋 DETAYLI KURULUM ADIMLARI
+───────────────────────────────────────────────────────────────
+
+ADIM 1: DOSYA YÜKLEME
+─────────────────────────────────────────────────────────────
+- FTP veya Dosya Yöneticisi ile tüm dosyaları yükleyin
+- Klasör yapısı şu şekilde olmalı:
+
+  httpdocs/
+    ├── admin/           (Admin panel dosyaları)
+    ├── assets/          (CSS, JS, resimler)
+    ├── includes/        (Sistem dosyaları)
+    ├── uploads/         (Yüklenen dosyalar için)
+    ├── cache/           (Önbellek için)
+    ├── index.php        (Ana sayfa)
+    ├── install.php      (Kurulum sihirbazı)
+    ├── .htaccess        (Apache ayarları)
+    └── database_*.sql   (Veritabanı şemaları)
+
+ADIM 2: DOSYA İZİNLERİ (Linux/Unix sunucular için)
+─────────────────────────────────────────────────────────────
+Aşağıdaki klasörlere yazma izni verin (chmod 755 veya 777):
+
+  chmod 755 includes/
+  chmod 755 uploads/
+  chmod 755 uploads/products/
+  chmod 755 uploads/categories/
+  chmod 755 uploads/sliders/
+  chmod 755 uploads/banners/
+  chmod 755 cache/
+
+ADIM 3: VERİTABANI HAZIRLIĞI (Opsiyonel)
+─────────────────────────────────────────────────────────────
+Veritabanını manuel oluşturmak isterseniz:
+
+  1. cPanel veya Plesk'ten MySQL veritabanı oluşturun
+  2. Kullanıcı oluşturup tüm yetkileri verin
+  3. Veritabanı bilgilerini not edin
+
+  NOT: Kurulum sihirbazı veritabanını OTOMATIK oluşturabilir!
+
+ADIM 4: KURULUM SIHIRBAZI
+─────────────────────────────────────────────────────────────
+Tarayıcınızda şu adrese gidin:
+  → https://siteadiniz.com/install.php
+
+STEP 1: Sistem Gereksinimleri Kontrolü
+  ✓ PHP >= 7.4
+  ✓ PDO MySQL
+  ✓ JSON, GD, mbstring eklentileri
+  ✓ Klasör izinleri
+
+STEP 2: Veritabanı Ayarları
+  - Sunucu: localhost (veya sunucu IP)
+  - Veritabanı Adı: istediğiniz isim (ör: eticaret)
+  - Kullanıcı: MySQL kullanıcı adı
+  - Şifre: MySQL şifresi
+
+  → "Devam Et" butonuna tıklayın
+  → Veritabanı OTOMATIK oluşturulacak!
+
+STEP 3: Veritabanı Tabloları
+  - "Veritabanını Oluştur" butonuna tıklayın
+  - 35+ tablo otomatik olarak oluşturulacak
+  - Bekleyin... (birkaç saniye sürebilir)
+
+STEP 4: Yönetici Hesabı
+  - Site Adı: E-Ticaret sitenizin adı
+  - Admin Kullanıcı Adı: admin (veya istediğiniz)
+  - Admin E-posta: geçerli e-posta adresi
+  - Şifre: güçlü bir şifre (min 6 karakter)
+  - Şifre Tekrar: aynı şifreyi tekrar girin
+
+  → "Kurulumu Tamamla" butonuna tıklayın
+
+STEP 5: Kurulum Tamamlandı! 🎉
+  - "Siteyi Gör" → Ana sayfaya git
+  - "Admin Panel" → Yönetim paneline git
+
+ADIM 5: GÜVENLİK (ÖNEMLİ!)
+─────────────────────────────────────────────────────────────
+Kurulum tamamlandıktan SONRA mutlaka yapın:
+
+  ❌ install.php dosyasını SİLİN
+  ❌ database_*.sql dosyalarını SİLİN
+  ❌ test.php, info.php dosyalarını SİLİN (varsa)
+
+  Komut satırından:
+    rm install.php
+    rm database_*.sql
+    rm test.php info.php
+
+───────────────────────────────────────────────────────────────
+🔐 İLK GİRİŞ BİLGİLERİ
+───────────────────────────────────────────────────────────────
+
+ADMIN PANELİ:
+  URL: https://siteadiniz.com/admin/
+  Kullanıcı: Kurulumda belirlediğiniz admin kullanıcı adı
+  Şifre: Kurulumda belirlediğiniz admin şifresi
+
+───────────────────────────────────────────────────────────────
+⚙️ SİSTEM GEREKSİNİMLERİ
+───────────────────────────────────────────────────────────────
+
+Minimum Gereksinimler:
+  • PHP: 7.4 veya üzeri (8.0+ önerilir)
+  • MySQL: 5.7 veya üzeri (8.0+ önerilir)
+  • Apache: mod_rewrite aktif
+  • PHP Eklentileri:
+    - PDO (pdo_mysql)
+    - JSON
+    - GD (resim işleme)
+    - mbstring (Türkçe karakter)
+    - cURL (opsiyonel)
+
+Önerilen Ayarlar (php.ini):
+  upload_max_filesize = 10M
+  post_max_size = 10M
+  memory_limit = 256M
+  max_execution_time = 300
+
+───────────────────────────────────────────────────────────────
+🎯 KURULUM SONRASI İLK YAPILANDIR
+───────────────────────────────────────────────────────────────
+
+1. GENEL AYARLAR
+   Admin Panel → Ayarlar → Genel Ayarlar
+   - Site adı, açıklama, iletişim bilgileri
+   - Para birimi, vergi oranı
+   - E-posta ayarları
+
+2. KARGO YÖNTEMLERİ
+   Admin Panel → Pazarlama → Kargo Yöntemleri
+   - MNG Kargo, Yurtiçi Kargo, vb. ekleyin
+   - Ücretleri belirleyin
+
+3. ÖDEME YÖNTEMLERİ
+   Admin Panel → Pazarlama → Ödeme Yöntemleri
+   - Havale/EFT
+   - Kredi Kartı (API anahtarları gerekli)
+   - Kapıda Ödeme
+
+4. KATEGORİLER
+   Admin Panel → Katalog → Kategoriler
+   - Ana kategoriler oluşturun
+   - Alt kategoriler ekleyin
+   - Kategori resimleri yükleyin
+
+5. ÜRÜNLER
+   Admin Panel → Katalog → Ürünler
+   - İlk ürünlerinizi ekleyin
+   - Fotoğraflar yükleyin
+   - Stok ve fiyat bilgilerini girin
+
+6. ANA SAYFA TASARIMI
+   Admin Panel → Tasarım → Slider Yönetimi
+   - Ana sayfa slider resimleri ekleyin
+
+   Admin Panel → Tasarım → Banner Yönetimi
+   - Reklamlar ve promosyonlar ekleyin
+
+───────────────────────────────────────────────────────────────
+🛠️ SORUN GİDERME
+───────────────────────────────────────────────────────────────
+
+SORUN: "500 Internal Server Error"
+ÇÖZÜM:
+  1. includes/ klasörüne yazma izni var mı kontrol edin
+  2. .htaccess dosyasını geçici olarak yeniden adlandırın
+  3. PHP error log dosyasını kontrol edin
+
+SORUN: "Database connection failed"
+ÇÖZÜM:
+  1. includes/config.php dosyasını açın
+  2. DB_HOST: 'localhost' yerine '127.0.0.1' deneyin
+  3. Veritabanı kullanıcısının tüm yetkileri var mı kontrol edin
+
+SORUN: "Resimler yüklenmiyor"
+ÇÖZÜM:
+  1. uploads/ klasörüne ve alt klasörlere yazma izni verin
+  2. PHP upload_max_filesize ayarını kontrol edin
+  3. GD eklentisinin yüklü olduğundan emin olun
+
+SORUN: "Admin panele giriş yapamıyorum"
+ÇÖZÜM:
+  1. Tarayıcı önbelleğini temizleyin
+  2. Çerezleri silin
+  3. Veritabanında admin_users tablosunu kontrol edin
+  4. Gerekirse install.php'yi tekrar çalıştırıp yeni şifre belirleyin
+
+SORUN: "Step 4 veya 5'te 404 hatası"
+ÇÖZÜM:
+  ✅ Bu hata düzeltildi! En son install.php dosyasını kullanın.
+  - guncel1/ klasöründeki install.php dosyası günceldir
+
+───────────────────────────────────────────────────────────────
+📞 DESTEK VE YARDIM
+───────────────────────────────────────────────────────────────
+
+Kurulum sırasında sorun yaşarsanız:
+
+  1. Error log dosyasını kontrol edin:
+     - /error.log (site kök dizini)
+     - PHP error log (sunucu ayarlarına göre)
+
+  2. Tarayıcı konsolunu (F12) kontrol edin
+
+  3. Sunucu PHP ve MySQL versiyonlarını kontrol edin
+
+  4. Dosya izinlerini kontrol edin (755/777)
+
+───────────────────────────────────────────────────────────────
+✨ ÖZELLİKLER
+───────────────────────────────────────────────────────────────
+
+FRONTEND (Müşteri Tarafı):
+  ✓ Modern, responsive tasarım
+  ✓ Kategori ve ürün listeleme
+  ✓ Ürün detay sayfaları
+  ✓ Sepet sistemi
+  ✓ Kullanıcı kayıt/giriş
+  ✓ Adres yönetimi
+  ✓ Sipariş takibi
+  ✓ Favori listesi (Wishlist)
+  ✓ Ürün karşılaştırma
+  ✓ Ürün yorumları
+  ✓ Kupon sistemi
+  ✓ Arama ve filtreleme
+
+BACKEND (Admin Paneli):
+  ✓ Dashboard ve istatistikler
+  ✓ Ürün yönetimi (CRUD)
+  ✓ Kategori yönetimi
+  ✓ Sipariş yönetimi
+  ✓ Müşteri yönetimi
+  ✓ Stok takibi
+  ✓ Kupon yönetimi
+  ✓ Slider yönetimi
+  ✓ Banner yönetimi
+  ✓ Menü yönetimi
+  ✓ Sayfa yönetimi
+  ✓ Kargo yöntemleri
+  ✓ Ödeme yöntemleri
+  ✓ E-posta şablonları
+  ✓ Tema ayarları
+  ✓ Genel ayarlar
+  ✓ Kullanıcı rolleri
+  ✓ Activity log
+
+───────────────────────────────────────────────────────────────
+📝 SÜRÜM BİLGİLERİ
+───────────────────────────────────────────────────────────────
+
+Versiyon: 1.0 (Güncel)
+Güncelleme: 2025-01-20
+
+Son Düzeltmeler:
+  ✅ Install.php tam config.php oluşturma - DÜZELTİLDİ
+  ✅ Admin şifre doğrulama hatası - DÜZELTİLDİ
+  ✅ Step 4-5 404 hatası - DÜZELTİLDİ
+  ✅ Function redeclaration hatası - DÜZELTİLDİ
+  ✅ HTTPS session hatası - DÜZELTİLDİ
+  ✅ Database tabloları otomatik oluşturma - ÇALIŞIYOR
+
+───────────────────────────────────────────────────────────────
+
+🎉 Başarılar dileriz!
+
+Bu sistem OpenCart benzeri profesyonel bir e-ticaret platformudur.
+Tamamen Türkçe ve kullanıma hazır durumda.
+
+═══════════════════════════════════════════════════════════════
