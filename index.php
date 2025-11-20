@@ -45,7 +45,7 @@ if ($slider) {
 
 // Get featured products
 $featuredProducts = dbQuery("
-    SELECT p.*, c.name as category_name
+    SELECT p.*, c.name as category_name, p.main_image as image
     FROM products p
     LEFT JOIN categories c ON p.category_id = c.id
     WHERE p.status = 1 AND p.is_featured = 1
@@ -54,7 +54,7 @@ $featuredProducts = dbQuery("
 
 // Get new products
 $newProducts = dbQuery("
-    SELECT p.*, c.name as category_name
+    SELECT p.*, c.name as category_name, p.main_image as image
     FROM products p
     LEFT JOIN categories c ON p.category_id = c.id
     WHERE p.status = 1 AND p.is_new = 1
@@ -63,7 +63,7 @@ $newProducts = dbQuery("
 
 // Get bestseller products (most ordered)
 $bestsellerProducts = dbQuery("
-    SELECT p.*, c.name as category_name, COALESCE(SUM(oi.quantity), 0) as sold
+    SELECT p.*, c.name as category_name, p.main_image as image, COALESCE(SUM(oi.quantity), 0) as sold
     FROM products p
     LEFT JOIN categories c ON p.category_id = c.id
     LEFT JOIN order_items oi ON p.id = oi.product_id
@@ -74,7 +74,7 @@ $bestsellerProducts = dbQuery("
 
 // Get special offers (discounted products)
 $specialProducts = dbQuery("
-    SELECT p.*, c.name as category_name,
+    SELECT p.*, c.name as category_name, p.main_image as image,
     ROUND(((p.price - p.sale_price) / p.price) * 100) as discount_percent
     FROM products p
     LEFT JOIN categories c ON p.category_id = c.id
@@ -624,10 +624,10 @@ $accentColor = $themeSettings['accent_color'] ?? '#f59e0b';
                 </div>
             <?php endforeach; ?>
         </div>
-        <?php if ($slider['show_dots']): ?>
+        <?php if ($slider && !empty($slider['show_dots'])): ?>
             <div class="swiper-pagination"></div>
         <?php endif; ?>
-        <?php if ($slider['show_arrows']): ?>
+        <?php if ($slider && !empty($slider['show_arrows'])): ?>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         <?php endif; ?>

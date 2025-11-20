@@ -154,6 +154,13 @@ function isCustomer() {
 }
 
 /**
+ * Check if user is logged in (alias for isCustomer for frontend)
+ */
+function isLoggedIn() {
+    return isCustomer();
+}
+
+/**
  * Get logged in admin
  */
 function getAdmin() {
