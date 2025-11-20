@@ -2,7 +2,11 @@
 /**
  * Profesyonel Kurulum Sihirbazı - OpenCart Benzeri
  */
-session_start();
+
+// Session başlat (eğer başlatılmamışsa)
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $step = (int)($_GET['step'] ?? 1);
 $error = '';
@@ -12,16 +16,28 @@ $success = '';
 if (file_exists(__DIR__ . '/includes/config.php')) {
     $config = file_get_contents(__DIR__ . '/includes/config.php');
     if (strpos($config, 'DB_HOST') !== false && !isset($_GET['reinstall'])) {
-        require_once __DIR__ . '/includes/config.php';
-        try {
-            $pdo = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8mb4", DB_USER, DB_PASS);
-            $result = $pdo->query("SELECT COUNT(*) FROM site_settings");
-            if ($result && $result->fetchColumn() > 0) {
-                header('Location: /');
-                exit;
+        // Config dosyasını parse ederek sabitleri alalım (require etmeden)
+        preg_match('/define\([\'"]DB_HOST[\'"]\s*,\s*[\'"]([^\'"]+)[\'"]\)/', $config, $host_match);
+        preg_match('/define\([\'"]DB_NAME[\'"]\s*,\s*[\'"]([^\'"]+)[\'"]\)/', $config, $name_match);
+        preg_match('/define\([\'"]DB_USER[\'"]\s*,\s*[\'"]([^\'"]+)[\'"]\)/', $config, $user_match);
+        preg_match('/define\([\'"]DB_PASS[\'"]\s*,\s*[\'"]([^\'"]+)[\'"]\)/', $config, $pass_match);
+
+        if (!empty($host_match[1]) && !empty($name_match[1])) {
+            try {
+                $pdo = new PDO(
+                    "mysql:host={$host_match[1]};dbname={$name_match[1]};charset=utf8mb4",
+                    $user_match[1] ?? '',
+                    $pass_match[1] ?? ''
+                );
+                $result = $pdo->query("SELECT COUNT(*) FROM site_settings");
+                if ($result && $result->fetchColumn() > 0) {
+                    header('Location: /');
+                    exit;
+                }
+            } catch (Exception $e) {
+                // Kurulum gerekiyor devam et
+                error_log("Install check error: " . $e->getMessage());
             }
-        } catch (Exception $e) {
-            // Kurulum gerekiyor
         }
     }
 }

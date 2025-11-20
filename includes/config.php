@@ -106,7 +106,9 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// Global Functions
-require_once INCLUDES_PATH . '/database.php';
-require_once INCLUDES_PATH . '/functions.php';
-require_once INCLUDES_PATH . '/security.php';
+// Global Functions - Sadece sabitler tanımlıysa yükle
+if (defined('DB_HOST') && defined('DB_NAME')) {
+    require_once INCLUDES_PATH . '/database.php';
+    require_once INCLUDES_PATH . '/functions.php';
+    require_once INCLUDES_PATH . '/security.php';
+}
